@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>yapay entry ifşaatörü yönetim üssü</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            padding: 24px;
+            width: 420px;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        h2 {
+            font-size: 16px;
+            margin-top: 0;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        p.aciklama {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .model-listesi {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .model-karti {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.2s, transform 0.2s;
+            position: relative;
+        }
+
+        .model-karti.surukleniyor {
+            opacity: 0.5;
+            border-style: dashed;
+        }
+
+        .kart-ust {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .kart-baslik-grup {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tutamac {
+            cursor: grab;
+            color: #bbb;
+            display: flex;
+            align-items: center;
+        }
+
+        .tutamac:hover {
+            color: #888;
+        }
+
+        .tutamac svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .model-adi {
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .aktif-switch {
+            display: flex;
+            align-items: center;
+        }
+
+        input[type="checkbox"] {
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+        }
+
+        .api-input-grup {
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 12px;
+            font-family: monospace;
+            background-color: #fafafa;
+        }
+
+        input[type="text"]:focus {
+            border-color: #81c14b;
+            outline: none;
+            background-color: white;
+        }
+
+        .api-link {
+            font-size: 11px;
+            color: #81c14b;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .api-link:hover {
+            text-decoration: underline;
+        }
+
+        .kaydet-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        button#kaydet {
+            background-color: #81c14b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        button#kaydet:hover {
+            background-color: #689f38;
+        }
+
+        #durum {
+            font-size: 12px;
+            color: #4caf50;
+            display: none;
+            font-weight: 500;
+            margin-right: auto;
+        }
+
+        .badge {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: #eee;
+            color: #666;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>
+        yapay zeka modelleri
+    </h2>
+    <p class="aciklama">modeller çekiştirilerek önceliklendirilebilir. ilk sıradaki model hata verirse komşuya gidip bir onluk alınmaya çalışılır. alınamazsa yerel motor kullanılır. anahtar girilse bile kullanılmayacak modellerin işareti kaldırılabilir, ikisi de kaldırılırsa yine yerel motor kullanılır.</p>
+
+    <div id="modelListesi" class="model-listesi">
+    </div>
+
+    <div class="kaydet-container">
+        <div id="durum">tabi efendim!</div>
+        <button id="kaydet">yolla</button>
+    </div>
+
+    <script src="ayarlar.js"></script>
+</body>
+
+</html>
